@@ -5,22 +5,35 @@
  */
 package ca.sheridancollege.project;
 
+
 /**
- * A class to be used as the base Card class for the project. Must be general
- * enough to be instantiated for any Card game. Students wishing to add to the code 
- * should remember to add themselves as a modifier.
- * @author dancye, 2018
+ *
+ * @author hussamhaidara
  */
-public abstract class Card 
-{
-    //default modifier for child classes
-    
-    /**
-     * Students should implement this method for their specific children classes 
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     */
-    
-    @Override
-    public abstract String toString();
-    
+public class Card {
+	
+	private Colour colour;
+//CardType is enum here define thing in list that we cannot remove 
+	private CardType value;
+
+	public Card(){
+		
+	}
+
+	public Colour getColour() {
+		return colour;
+	}
+
+	public CardType getValue() {
+		return value;
+	}
+
+	public void setColour(Colour colour) {
+		this.colour = colour;
+	}
+
+	public void setValue(CardType value) {
+		this.value = value;
+	}
+
 }
