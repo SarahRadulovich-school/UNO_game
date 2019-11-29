@@ -13,8 +13,6 @@ import java.util.ArrayList;
  */
 public class Pile {
 	private Card topCard;
-	private ArrayList<Card> cards;
-	private int size;
 	
 	public Pile(){
 		
@@ -30,24 +28,13 @@ public class Pile {
 		return topCard;
 	}
 
-	public ArrayList<Card> getCards() {
-		return cards;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
+	
+	
 	public void setTopCard(Card topCard) {
 		this.topCard = topCard;
 	}
 
-	public void setCards(ArrayList<Card> cards) {
-		this.cards = cards;
-	}
+	
 
-	public void setSize(int size) {
-		this.size = size;
-	}
 	
 }

@@ -10,32 +10,19 @@ import java.util.ArrayList;
 /**
  *
  * @author hussamhaidara
+ * since the group the group of card, there is no need of defining cards and
+ * size in this class since these attrebutes are already defined in the supper class.
+ * redefing these attribute 
  */
-public class Deck {
-		private ArrayList<Card> cards;
-		private int size;
+public class Deck extends GroupOfCards {
+		
 // constructor
-public Deck(){
-	
+public Deck(int givenSize){
+// we call the parents contructor to do exacly what the parents constructor does.	
+	super(givenSize);
 }
 		
 public void firstCard(){
 	}	
-
-	public ArrayList<Card> getCards() {
-		return cards;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setCards(ArrayList<Card> cards) {
-		this.cards = cards;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
 
 }

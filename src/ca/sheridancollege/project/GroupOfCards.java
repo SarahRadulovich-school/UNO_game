@@ -18,12 +18,20 @@ public class GroupOfCards
 {
    
     //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
+   // list of cards
+	private ArrayList <Card> cards;
+   // the number of cards in the list 
+	
     private int size;//the size of the grouping
-    
+    //constructor, that creats a new group of cards with the spacified sized
+    //ex:if we want to creat a group of ten cards,we use 
+    // groupOfCard tenCards = new GroupOfCards(10);
+    //create a new group of cards then hold a max of 10 cards
     public GroupOfCards(int givenSize)
     {
         size = givenSize;
+	// the max that shhould grou hc
+	cards = new ArrayList(givenSize)
     }
     
     /**

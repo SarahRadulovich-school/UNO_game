@@ -17,8 +17,14 @@ public class Player {
 	private int handSize;
 	private ArrayList<Card> hand;
 	
-	// Constructor 
+	// Constructor creates a new player object 
+	//when creating a new player, the hand is empty and the hand size is 0
+	// we therefore create an new empty hand for the player in the constructor  and assign the handsize 0.
 	public Player(){
+		// create empty hand for player 
+		this.hand = new ArrayList();
+		// the handsize is 0
+		this.handSize = 0;
 		
 	}
 	//getters method
