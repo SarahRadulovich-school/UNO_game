@@ -36,7 +36,7 @@ public UnoGame(){
             
             //Creating 4 Player objects in the ArrayList to represent the 4 players of the game
             //This program REQUIRES 4 players exactly
-            uno.players = new ArrayList<Player>();
+            uno.players = new ArrayList<>();
             for (int i = 0; i < 4; i++) {
                 uno.players.add(new Player());
             }
@@ -53,7 +53,23 @@ public UnoGame(){
             System.out.println("Thanks for playing!");
 	}
         
-	public void newGame(){
+	public void newGame() {
+            //create the deck object
+            Deck deck = new Deck();
+            //create the pile object
+            Pile pile = new Pile();
+            
+            //loop continues, as long as the win condition hasn't been met
+            while (winner.getPlayerName() != null) {
+                //play game
+            }
+            
+            //game ends
+            System.out.println("Congratulations " + winner.getPlayerName() + " you are the winner!");
+            //losers
+            for (int i = 0; i < 4; i++) {
+                System.out.println("Sorry " + losers.get(i).getPlayerName() + " you lose.");
+            }
 	}
         
 	//getters
