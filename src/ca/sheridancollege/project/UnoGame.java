@@ -58,18 +58,45 @@ public UnoGame(){
             Deck deck = new Deck();
             //create the pile object
             Pile pile = new Pile();
+            //initializing winner
+            winner = new Player();
             
             //loop continues, as long as the win condition hasn't been met
-            while (winner.getPlayerName() != null) {
+            boolean reverse = false;
+            //Starts at one because player1 will have the first turn. 
+            int turnIndex = 0;
+            
+            while (winner.getPlayerName() == null) {
                 //play game
+                PlayerTurn turn = new PlayerTurn(players.get(turnIndex));
+                
+                //find out if we're switching the order of turns
+                reverse = turn.getReverseCard();
+                
+                //player turns going in numerical order
+                if (!reverse) {
+                    turnIndex++;
+                    //if we've gone through all the players, it will return back to player1
+                    if(turnIndex > 3) {
+                        turnIndex = 0;
+                    }
+                }
+                //player turns going in non-numerical
+                else if (reverse) {
+                    turnIndex--;
+                    //if we've gone through all the players (in reverse), it will return back to player4
+                    if(turnIndex < 0) {
+                        turnIndex = 3;
+                    }
+                }
             }
             
-            //game ends
-            System.out.println("Congratulations " + winner.getPlayerName() + " you are the winner!");
-            //losers
-            for (int i = 0; i < 4; i++) {
-                System.out.println("Sorry " + losers.get(i).getPlayerName() + " you lose.");
-            }
+//            //game ends
+//            System.out.println("Congratulations " + winner.getPlayerName() + " you are the winner!");
+//            //losers
+//            for (int i = 0; i < 3; i++) {
+//                System.out.println("Sorry " + losers.get(i).getPlayerName() + " you lose.");
+//            }
 	}
         
 	//getters
