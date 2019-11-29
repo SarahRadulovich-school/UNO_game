@@ -70,7 +70,7 @@ public UnoGame(){
 	}
 
         //setters
-	public void setWinner(Player winnerl) {
+	public void setWinner(Player winner) {
 		this.winner = winner;
 	}
 
@@ -78,8 +78,8 @@ public UnoGame(){
 		this.players = players;
 	}
 
-	public void setLosers(ArrayList<Player> loosers) {
-		this.losers = loosers;
+	public void setLosers(ArrayList<Player> losers) {
+		this.losers = losers;
 	}
 	
 }
