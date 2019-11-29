@@ -11,11 +11,11 @@ import java.util.ArrayList;
  *
  * @author hussamhaidara
  */
-public class Pile {
+public class Pile extends GroupOfCards {
 	private Card topCard;
 	
 	public Pile(){
-		
+            super(0);
 	}
 	/*getter are used to opbtain or access private attributes of a class
 	since the attribute can not be accessed directly by other classes

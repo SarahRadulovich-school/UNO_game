@@ -12,7 +12,7 @@ package ca.sheridancollege.project;
 public enum CardType {
 	ZERO, ONE, TWO, THREE,
 	FOUR, FIVE, SIX, SEVEN,
-	EIGHT, NINE, PICKUP2, PICKUP4,
-	REVERSE, SKIPTURN, WILDCARD
+	EIGHT, NINE, REVERSE, SKIPTURN,
+        PICKUP2, PICKUP4, WILDCARD
 	
 }
