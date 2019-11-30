@@ -60,6 +60,11 @@ public UnoGame(){
             Pile pile = new Pile();
             //initializing winner
             winner = new Player();
+
+            //shuffle the deck
+            deck.shuffle();
+            //start the game by selecting the first card from the deck onto the pile
+            pile.setTopCard(deck.nextCard());
             
             //loop continues, as long as the win condition hasn't been met
             boolean reverse = false;
@@ -67,9 +72,10 @@ public UnoGame(){
             int turnIndex = 0;
             
             while (winner.getPlayerName() == null) {
+                //Remind the player what card is on top
+                System.out.println("Top card: " + pile.getTopCard().getValue() + " , " + pile.getTopCard().getColour());
                 //play game
                 PlayerTurn turn = new PlayerTurn(players.get(turnIndex));
-                
                 //find out if we're switching the order of turns
                 reverse = turn.getReverseCard();
                 
@@ -92,7 +98,7 @@ public UnoGame(){
             }
             
 //            //game ends
-//            System.out.println("Congratulations " + winner.getPlayerName() + " you are the winner!");
+            System.out.println("Congratulations " + winner.getPlayerName() + " you are the winner!");
 //            //losers
 //            for (int i = 0; i < 3; i++) {
 //                System.out.println("Sorry " + losers.get(i).getPlayerName() + " you lose.");

@@ -31,7 +31,6 @@ public class Deck extends GroupOfCards {
                 card.setColour(Colour.values()[j]);
                 card.setValue(CardType.values()[i]);
                 deck.add(card);
-                System.out.println(card.getColour() + " , " + card.getValue());
             }
         }
         
@@ -39,14 +38,16 @@ public class Deck extends GroupOfCards {
         for (int i = 0; i < 4; i++) {
             Card wildcard = new Card();
             wildcard.setValue(CardType.WILDCARD);
+            wildcard.setColour(Colour.NOCOLOUR);
             deck.add(wildcard);
             
             Card pickup4 = new Card();
             pickup4.setValue(CardType.PICKUP4);
+            pickup4.setColour(Colour.NOCOLOUR);
             deck.add(pickup4);
-            System.out.println(wildcard.getValue());
-            System.out.println(pickup4.getValue());
         }
+        
+        super.setCards(deck);
     }
     
     public void shuffle() {
@@ -55,8 +56,21 @@ public class Deck extends GroupOfCards {
         super.setCards(deckCards);
     }
 		
-    public void nextCard() {
+    public Card nextCard() {
+        ArrayList<Card> deck = super.getCards();
+        int size = deck.size();
         
+        //grab the last card in the cards ArrayList
+        Card nextCard = deck.get(size - 1);
+        
+        //remove it from the ArrayList after
+        deck.remove(nextCard);
+        
+        //set the size and card back into the abstract class
+        super.setSize(size-1);
+        super.setCards(deck);
+        
+        return nextCard;
     }
 
 }
