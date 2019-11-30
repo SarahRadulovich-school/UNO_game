@@ -63,6 +63,11 @@ public UnoGame(){
 
             //shuffle the deck
             deck.shuffle();
+            //give each player 7 cards
+            for (int i = 0; i < 4; i++) {
+                players.get(i).setHandSize(7);
+                players.get(i).setHand(deck.startingCards());
+            }
             //start the game by selecting the first card from the deck onto the pile
             pile.setTopCard(deck.nextCard());
             
@@ -76,6 +81,8 @@ public UnoGame(){
                 System.out.println("Top card: " + pile.getTopCard().getValue() + " , " + pile.getTopCard().getColour());
                 //play game
                 PlayerTurn turn = new PlayerTurn(players.get(turnIndex));
+                turn.playTurn();
+                
                 //find out if we're switching the order of turns
                 reverse = turn.getReverseCard();
                 

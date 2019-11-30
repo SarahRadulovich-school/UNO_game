@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ca.sheridancollege.project;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,16 @@ private boolean reverseCard;
 public PlayerTurn(Player player){
 	this.player = player;
 }
+
+public void playTurn() {
+    System.out.println("PLAYER: " + player.getPlayerName());
+    System.out.println("Here is your hand: ");
+    ArrayList<Card> hand = player.getHand();
+    for(int i = 0; i < hand.size(); i++) {
+        System.out.println((i+1) + ". " + hand.get(i).getValue() + ", " + hand.get(i).getColour());
+    }
+}
+
 public void pickUpTwoCards(){
 	
 }

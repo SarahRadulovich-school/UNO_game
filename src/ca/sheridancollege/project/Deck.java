@@ -72,5 +72,16 @@ public class Deck extends GroupOfCards {
         
         return nextCard;
     }
+    
+    public ArrayList<Card> startingCards() {
+        ArrayList<Card> startingHand = new ArrayList();
+        
+        //a starting hand has 7 cards
+        for(int i = 0; i < 7; i++) {
+            startingHand.add(nextCard());
+        }
+        
+        return startingHand;
+    }
 
 }
