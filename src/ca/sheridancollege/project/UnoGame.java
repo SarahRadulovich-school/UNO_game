@@ -61,6 +61,7 @@ public class UnoGame {
         winner = new Player();
 
         boolean pickup2 = false;
+        boolean pickup4 = false;
 
         //shuffle the deck
         deck.shuffle();
@@ -90,13 +91,20 @@ public class UnoGame {
             ArrayList<Card> hand = current_player.getHand();
 
             //if the previous player played "pickup2"
-            if (pickup2) {
+            if (pickup2 || pickup4) {
                 //player gets 2 cards and forfeit's their turn
-                System.out.println("You must pick up two cards and forfeit your turn");
+                System.out.println("You must pick up cards and forfeit your turn");
 
                 hand.add(deck.nextCard());
                 hand.add(deck.nextCard());
+                
+                if(pickup4) {
+                    hand.add(deck.nextCard());
+                    hand.add(deck.nextCard());
+                }
+                
                 pickup2 = false;
+                pickup4 = false;
                 
             } else {
                 
@@ -121,6 +129,11 @@ public class UnoGame {
                         if(hand.get(selection - 1).getValue() == CardType.PICKUP2) {
                             pickup2 = true;
                         }
+                        if(hand.get(selection - 1).getValue() == CardType.PICKUP4) {
+                            pickup4 = true;
+                        }
+                        
+                        //if it's the wild card
                         
                         hand.remove(selection - 1);
                         

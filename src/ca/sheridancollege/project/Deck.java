@@ -24,7 +24,7 @@ public class Deck extends GroupOfCards {
         ArrayList<Card> deck = new ArrayList<>();
         
         //loop for the cards 0-9, and skip, reverse, and pickup2
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 14; i++) {
             //loop for the colours BLUE, YELLOW, RED, and GREEN
             for ( int j = 0; j < 4; j++) {
                 Card card = new Card();
@@ -40,11 +40,6 @@ public class Deck extends GroupOfCards {
             wildcard.setValue(CardType.WILDCARD);
             wildcard.setColour(Colour.NOCOLOUR);
             deck.add(wildcard);
-            
-            Card pickup4 = new Card();
-            pickup4.setValue(CardType.PICKUP4);
-            pickup4.setColour(Colour.NOCOLOUR);
-            deck.add(pickup4);
         }
         
         super.setCards(deck);
