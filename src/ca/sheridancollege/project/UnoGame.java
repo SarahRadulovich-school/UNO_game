@@ -142,11 +142,21 @@ public class UnoGame {
                         }
 
                         hand.remove(selection - 1);
+                        
+                        if (hand.size() == 0) {
+                            //player wins
+                            winner = current_player;
+                            break;
+                        }
 
                     } else {
                         System.out.println("That is not a valid card. ");
                     }
 
+                    //we need the updated hand + hand size to determine if UNO needs to be said
+                    current_player.setHand(hand);
+                    current_player.setHandSize(hand.size());
+            
                     boolean penalty = UnoOrContinue(current_player);
 
                     if (penalty) {
@@ -159,6 +169,7 @@ public class UnoGame {
 
             //turn is over, set new hand.
             current_player.setHand(hand);
+            current_player.setHandSize(hand.size());
 
             //find out if we're switching the order of turns
             if (pile.getTopCard().getValue() == CardType.REVERSE) {
@@ -186,13 +197,13 @@ public class UnoGame {
                 }
             }
         }
-
-//            //game ends
-        System.out.println("Congratulations " + winner.getPlayerName() + " you are the winner!");
-//            //losers
-//            for (int i = 0; i < 3; i++) {
-//                System.out.println("Sorry " + losers.get(i).getPlayerName() + " you lose.");
-//            }
+        
+        if(winner.getPlayerName() != null) {
+            System.out.println("Congradulations " + winner.getPlayerName() + " you win!");
+        }
+        else {
+            System.out.println("Deck has finished. No winner");
+        }
     }
 
     public Colour wildCard(Card cardSelection) {
@@ -228,6 +239,7 @@ public class UnoGame {
         boolean hasUNO = false;
         boolean penalty = false;
 
+        System.out.println("******HAND SIZE = " + player.getHandSize());
         if (player.getHandSize() == 1) {
             hasUNO = true;
         }
