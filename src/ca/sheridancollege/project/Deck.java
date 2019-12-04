@@ -45,15 +45,29 @@ public class Deck extends GroupOfCards {
         super.setCards(deck);
     }
     
-    public void shuffle() {
+    public boolean shuffle() {
         ArrayList<Card> deckCards = super.getCards();
+        
+        if(deckCards.isEmpty()) {
+            //the deck is empty.
+            return false;
+        }
         Collections.shuffle(deckCards);
         super.setCards(deckCards);
+        
+        return true;
     }
 		
     public Card nextCard() {
         ArrayList<Card> deck = super.getCards();
         int size = deck.size();
+        
+        //if the deck is empty, return a blank card
+        if(size == 0) {
+            System.out.println("DECK IS EMPTY!");
+            Card blank = new Card();
+            return blank;
+        }
         
         //grab the last card in the cards ArrayList
         Card nextCard = deck.get(size - 1);

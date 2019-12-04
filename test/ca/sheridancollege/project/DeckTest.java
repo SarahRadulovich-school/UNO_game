@@ -44,51 +44,56 @@ public class DeckTest {
     public void testShuffleGood() {
         System.out.println("shuffleGood");
         Deck deck = new Deck();
+        boolean shuffled = false;
         deck.shuffle();
-        boolean shuffled= false;
-        deck.shuffle();
+        //we take out one card from the deck
         Card lastCard = deck.nextCard();
+        //we take out 58 more cards
         for (int i =0 ; i<57;i++)
-        { deck.nextCard();
+        {
+            deck.nextCard();
         }
+        //we take out the last card from the deck
         Card firstCard = deck.nextCard();
+        
+        //if both cards = the same value they were before being shuffled, then test will fail.
         if (lastCard.getValue() != CardType.WILDCARD )
             shuffled = true;
         else if (firstCard.getValue()!=CardType.ZERO)
             shuffled = true;
-        // TODO review the generated test code and remove the default call to fail.
+        
+        //if either of the cards are different, that means the deck was shuffled and the test will pass
         assertEquals(true, shuffled);
     }
     @Test
     public void testShuffleBad() {
         System.out.println("shuffleBad");
         Deck deck = new Deck();
-        deck.shuffle();
-        boolean shuffled= false;
-        deck.shuffle();
-        Card lastCard = deck.nextCard();
-        for (int i =0 ; i<57;i++)
-        { deck.nextCard();
+        
+        //take out ALL cards from the deck. Deck is now empty
+        for (int i =0 ; i<59;i++)
+        {
+            deck.nextCard();
         }
-        Card firstCard = deck.nextCard();
-        if (lastCard.getValue() != CardType.WILDCARD )
-            shuffled = true;
-        else if (firstCard.getValue()!=CardType.ZERO)
-            shuffled = true;
-        // TODO review the generated test code and remove the default call to fail.
-        assertEquals(true, shuffled);
+        
+        // the shuffle() method should return false
+        assertEquals(false, deck.shuffle());
     }
     @Test
     public void testShuffleBoundary() {
         System.out.println("shuffleBoundary");
         Deck deck = new Deck();
         
+        //we take out 59 cards from the deck. There is one card in the deck left
         for (int i =0 ; i<58;i++)
-        { deck.nextCard();
+        {
+            deck.nextCard();
         }
+        //shuffle the one card.
         deck.shuffle();
+        //take that one card out of the deck
         Card card = deck.nextCard();
-        // TODO review the generated test code and remove the default call to fail.
+        //That card should stay the same as it original was (ZERO). 
         assertEquals(CardType.ZERO, card.getValue());
     }
     
@@ -101,7 +106,7 @@ public class DeckTest {
         System.out.println("nextCardGood");
         Deck deck = new Deck();
         Card card = deck.nextCard();
-        // TODO review the generated test code and remove the default call to fail.
+        ////since the deck is unshuffled, that last card should be WILDCARD
         assertEquals(CardType.WILDCARD, card.getValue());
     }
     @Test
@@ -109,26 +114,28 @@ public class DeckTest {
         System.out.println("nextCardBad");
         Deck deck = new Deck();
         
-        // TODO review the generated test code and remove the default call to fail.
+        //take all 60 cards out of the deck. The deck is now empty
         for (int i = 0 ; i < 59 ; i++)
         { 
             deck.nextCard();
         }
+        //take the last card from the deck
         Card card = deck.nextCard();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("No more cards left");
+        assertEquals(null, card.getValue());
     }
     @Test
     public void testNextCardBoundary() {
         System.out.println("nextCardBoundary");
         Deck deck = new Deck();
         
+        //take out 59 cards from the deck. The deck now has 1 card. 
         for (int i = 0 ; i < 58 ; i++)
         { 
             deck.nextCard();
         }
+        //take out the last card from the deck
         Card card = deck.nextCard();
-        // TODO review the generated test code and remove the default call to fail.
+        //since the deck is unshuffled, that last card should be ZERO
         assertEquals(CardType.ZERO, card.getValue());
     }
     

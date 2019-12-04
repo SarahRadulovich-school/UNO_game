@@ -35,9 +35,14 @@ public abstract class GroupOfCards
     }
    
     
-    public void shuffle()
+    public boolean shuffle()
     {
+        if(cards.isEmpty()) {
+            //cards is empty and cannot be shuffled
+            return false;
+        }
         Collections.shuffle(cards);
+        return true;
     }
 
     /**

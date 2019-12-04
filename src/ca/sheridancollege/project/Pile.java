@@ -34,10 +34,6 @@ public class Pile extends GroupOfCards {
                 return true;
             }
             
-            if (card.getValue() == CardType.PICKUP4) {
-                return true;
-            }
-            
             return valid;
         }
 	/*getter are used to opbtain or access private attributes of a class
