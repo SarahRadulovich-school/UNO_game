@@ -126,14 +126,44 @@ public class UnoGame {
                         //card is valid, and can be played
                         pile.setTopCard(hand.get(selection - 1));
                         
-                        if(hand.get(selection - 1).getValue() == CardType.PICKUP2) {
+                        Card cardSelection = hand.get(selection -1 );
+                        
+                        if(cardSelection.getValue() == CardType.PICKUP2) {
                             pickup2 = true;
                         }
-                        if(hand.get(selection - 1).getValue() == CardType.PICKUP4) {
+                        if(cardSelection.getValue() == CardType.PICKUP4) {
                             pickup4 = true;
                         }
                         
                         //if it's the wild card
+                        if(cardSelection.getValue() == CardType.WILDCARD) {
+                            System.out.println("What colour would you like to choose?");
+                            System.out.println("1. Red");
+                            System.out.println("2. Green");
+                            System.out.println("3. Blue");
+                            System.out.println("4. Yellow");
+                            
+                            int colourSelection = scan.nextInt();
+                            
+                            switch(colourSelection) {
+                                case 1:
+                                    cardSelection.setColour(Colour.RED);
+                                    pile.setTopCard(cardSelection);
+                                    break;
+                                case 2:
+                                    cardSelection.setColour(Colour.GREEN);
+                                    pile.setTopCard(cardSelection);
+                                    break;
+                                case 3:
+                                    cardSelection.setColour(Colour.BLUE);
+                                    pile.setTopCard(cardSelection);
+                                    break;
+                                case 4:
+                                    cardSelection.setColour(Colour.YELLOW);
+                                    pile.setTopCard(cardSelection);
+                                    break;
+                            }
+                        }
                         
                         hand.remove(selection - 1);
                         
