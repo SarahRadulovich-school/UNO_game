@@ -33,7 +33,7 @@ public class UnoGame {
 
         System.out.println("Welcome to UNO!");
 
-            //Creating 4 Player objects in the ArrayList to represent the 4 players of the game
+        //Creating 4 Player objects in the ArrayList to represent the 4 players of the game
         //This program REQUIRES 4 players exactly
         uno.players = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
@@ -84,7 +84,7 @@ public class UnoGame {
             System.out.println("Top card: " + pile.getTopCard().getValue() + " , " + pile.getTopCard().getColour());
 
             Player current_player = players.get(turnIndex);
-                //play game
+            //play game
 
             System.out.println("PLAYER: " + current_player.getPlayerName());
             System.out.println("Here is your hand: ");
@@ -97,17 +97,17 @@ public class UnoGame {
 
                 hand.add(deck.nextCard());
                 hand.add(deck.nextCard());
-                
-                if(pickup4) {
+
+                if (pickup4) {
                     hand.add(deck.nextCard());
                     hand.add(deck.nextCard());
                 }
-                
+
                 pickup2 = false;
                 pickup4 = false;
-                
+
             } else {
-                
+
                 System.out.println("0. Pick up a card");
                 for (int i = 0; i < hand.size(); i++) {
                     System.out.println((i + 1) + ". " + hand.get(i).getValue() + ", " + hand.get(i).getColour());
@@ -125,48 +125,24 @@ public class UnoGame {
                     if (pile.validPlay(hand.get(selection - 1)) == true) {
                         //card is valid, and can be played
                         pile.setTopCard(hand.get(selection - 1));
-                        
-                        Card cardSelection = hand.get(selection -1 );
-                        
-                        if(cardSelection.getValue() == CardType.PICKUP2) {
+
+                        Card cardSelection = hand.get(selection - 1);
+
+                        if (cardSelection.getValue() == CardType.PICKUP2) {
                             pickup2 = true;
                         }
-                        if(cardSelection.getValue() == CardType.PICKUP4) {
+                        if (cardSelection.getValue() == CardType.PICKUP4) {
                             pickup4 = true;
                         }
-                        
+
                         //if it's the wild card
-                        if(cardSelection.getValue() == CardType.WILDCARD) {
-                            System.out.println("What colour would you like to choose?");
-                            System.out.println("1. Red");
-                            System.out.println("2. Green");
-                            System.out.println("3. Blue");
-                            System.out.println("4. Yellow");
-                            
-                            int colourSelection = scan.nextInt();
-                            
-                            switch(colourSelection) {
-                                case 1:
-                                    cardSelection.setColour(Colour.RED);
-                                    pile.setTopCard(cardSelection);
-                                    break;
-                                case 2:
-                                    cardSelection.setColour(Colour.GREEN);
-                                    pile.setTopCard(cardSelection);
-                                    break;
-                                case 3:
-                                    cardSelection.setColour(Colour.BLUE);
-                                    pile.setTopCard(cardSelection);
-                                    break;
-                                case 4:
-                                    cardSelection.setColour(Colour.YELLOW);
-                                    pile.setTopCard(cardSelection);
-                                    break;
-                            }
+                        if (cardSelection.getValue() == CardType.WILDCARD) {
+                            cardSelection.setColour(wildCard(cardSelection));
+                            pile.setTopCard(cardSelection);
                         }
-                        
+
                         hand.remove(selection - 1);
-                        
+
                     } else {
                         System.out.println("That is not a valid card. ");
                     }
@@ -183,7 +159,7 @@ public class UnoGame {
 
             //turn is over, set new hand.
             current_player.setHand(hand);
-           
+
             //find out if we're switching the order of turns
             if (pile.getTopCard().getValue() == CardType.REVERSE) {
                 reverse = !reverse;
@@ -217,6 +193,30 @@ public class UnoGame {
 //            for (int i = 0; i < 3; i++) {
 //                System.out.println("Sorry " + losers.get(i).getPlayerName() + " you lose.");
 //            }
+    }
+
+    public Colour wildCard(Card cardSelection) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("What colour would you like to choose?");
+        System.out.println("1. Red");
+        System.out.println("2. Green");
+        System.out.println("3. Blue");
+        System.out.println("4. Yellow");
+
+        int colourSelection = scan.nextInt();
+
+        switch (colourSelection) {
+            case 1:
+                return Colour.RED;
+            case 2:
+                return Colour.GREEN;
+            case 3:
+                return Colour.BLUE;
+            case 4:
+                return Colour.YELLOW;
+            default:
+                return Colour.NOCOLOUR;
+        }
     }
 
     public boolean UnoOrContinue(Player player) {
