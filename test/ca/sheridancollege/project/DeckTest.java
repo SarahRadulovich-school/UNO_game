@@ -41,24 +41,95 @@ public class DeckTest {
      * Test of shuffle method, of class Deck.
      */
     @Test
-    public void testShuffle() {
-        System.out.println("shuffle");
-        Deck instance = new Deck();
-        instance.shuffle();
+    public void testShuffleGood() {
+        System.out.println("shuffleGood");
+        Deck deck = new Deck();
+        deck.shuffle();
+        boolean shuffled= false;
+        deck.shuffle();
+        Card lastCard = deck.nextCard();
+        for (int i =0 ; i<57;i++)
+        { deck.nextCard();
+        }
+        Card firstCard = deck.nextCard();
+        if (lastCard.getValue() != CardType.WILDCARD )
+            shuffled = true;
+        else if (firstCard.getValue()!=CardType.ZERO)
+            shuffled = true;
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, shuffled);
     }
+    @Test
+    public void testShuffleBad() {
+        System.out.println("shuffleBad");
+        Deck deck = new Deck();
+        deck.shuffle();
+        boolean shuffled= false;
+        deck.shuffle();
+        Card lastCard = deck.nextCard();
+        for (int i =0 ; i<57;i++)
+        { deck.nextCard();
+        }
+        Card firstCard = deck.nextCard();
+        if (lastCard.getValue() != CardType.WILDCARD )
+            shuffled = true;
+        else if (firstCard.getValue()!=CardType.ZERO)
+            shuffled = true;
+        // TODO review the generated test code and remove the default call to fail.
+        assertEquals(true, shuffled);
+    }
+    @Test
+    public void testShuffleBoundary() {
+        System.out.println("shuffleBoundary");
+        Deck deck = new Deck();
+        
+        for (int i =0 ; i<58;i++)
+        { deck.nextCard();
+        }
+        deck.shuffle();
+        Card card = deck.nextCard();
+        // TODO review the generated test code and remove the default call to fail.
+        assertEquals(CardType.ZERO, card.getValue());
+    }
+    
 
     /**
      * Test of nextCard method, of class Deck.
      */
     @Test
-    public void testNextCard() {
-        System.out.println("nextCard");
-        Deck instance = new Deck();
-        instance.nextCard();
+    public void testNextCardGood() {
+        System.out.println("nextCardGood");
+        Deck deck = new Deck();
+        Card card = deck.nextCard();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(CardType.WILDCARD, card.getValue());
+    }
+    @Test
+    public void testNextCardBad() {
+        System.out.println("nextCardBad");
+        Deck deck = new Deck();
+        
+        // TODO review the generated test code and remove the default call to fail.
+        for (int i = 0 ; i < 59 ; i++)
+        { 
+            deck.nextCard();
+        }
+        Card card = deck.nextCard();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("No more cards left");
+    }
+    @Test
+    public void testNextCardBoundary() {
+        System.out.println("nextCardBoundary");
+        Deck deck = new Deck();
+        
+        for (int i = 0 ; i < 58 ; i++)
+        { 
+            deck.nextCard();
+        }
+        Card card = deck.nextCard();
+        // TODO review the generated test code and remove the default call to fail.
+        assertEquals(CardType.ZERO, card.getValue());
     }
     
 }
