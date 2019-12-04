@@ -113,8 +113,36 @@ public class UnoGame {
                     System.out.println((i + 1) + ". " + hand.get(i).getValue() + ", " + hand.get(i).getColour());
                 }
 
-                Scanner scan = new Scanner(System.in);
-                int selection = scan.nextInt();
+                //Loop until the payer enter the right choice/picks the right card
+                boolean correctChoice = false;
+                int selection = -1;
+                Card topCard = pile.getTopCard();
+                while(!correctChoice){
+                   try{
+                        Scanner scan = new Scanner(System.in);
+              
+                        selection = scan.nextInt();
+
+                        if(selection == 0){
+
+                         break;
+                       }
+                       //see if the user entered the correct card
+                       Card chosen = hand.get(selection -1);
+                       if(chosen.getColour() == topCard.getColour()){
+                           break;
+                        }
+                      //if the cards are of same value
+                       if (chosen.getValue()==topCard.getValue()){
+                            break;
+                       }	
+                    System.out.println("That is not valid card.\nplease try again.");
+                   }catch(java.lang.IndexOutOfBoundsException e){
+                       System.out.println("That is not valid card.\nplease try again.");
+                   }
+                   
+                }
+                
 
                 //Player chose to pick up a card. 
                 if (selection == 0) {
@@ -196,6 +224,26 @@ public class UnoGame {
                     turnIndex += 4;
                 }
             }
+            
+            //If there is no cards left in the deck
+            if(deck.getSize() == 0){
+                //Add all the cards in the pile back to the deck and reshuffle the deck
+                //We have to leave the top card in the pile.
+                Card topCard = pile.getTopCard();
+                //Remove the top card from the pile
+                pile.getCards().remove(pile.getSize() -1);
+                
+                //Now add the cards in the pile to the deck
+                for(int i =0; i<pile.getSize(); i++){
+                    deck.getCards().add(pile.getCards().get(i));
+                }
+               //Reshuffle the deck
+                deck.shuffle();
+                //The pile is now empty
+                pile.setCards(new ArrayList<Card>());
+                //Add the top card to the pile
+                pile.getCards().add(topCard);
+            }
         }
         
         if(winner.getPlayerName() != null) {
@@ -239,7 +287,7 @@ public class UnoGame {
         boolean hasUNO = false;
         boolean penalty = false;
 
-        System.out.println("******HAND SIZE = " + player.getHandSize());
+        System.out.println("****HAND SIZE = " + player.getHandSize());
         if (player.getHandSize() == 1) {
             hasUNO = true;
         }
