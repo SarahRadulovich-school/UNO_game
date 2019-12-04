@@ -17,6 +17,29 @@ public class Pile extends GroupOfCards {
 	public Pile(){
             super(0);
 	}
+        
+        public boolean validPlay(Card card) {
+            //is the card being played valid?
+            boolean valid = false;
+            
+            if (card.getColour() == topCard.getColour()) {
+                return true;
+            }
+            
+            if (card.getValue() == topCard.getValue()) {
+                return true;
+            }
+            
+            if (card.getValue() == CardType.WILDCARD) {
+                return true;
+            }
+            
+            if (card.getValue() == CardType.PICKUP4) {
+                return true;
+            }
+            
+            return valid;
+        }
 	/*getter are used to opbtain or access private attributes of a class
 	since the attribute can not be accessed directly by other classes
 	 stters are used to modify the private attributes of a class since they 

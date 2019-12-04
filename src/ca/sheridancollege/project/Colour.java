@@ -10,6 +10,6 @@ package ca.sheridancollege.project;
  * @author hussamhaidara
  */
 public enum Colour {
-	RED, GREEN, BLUE, YELLOW
+	RED, GREEN, BLUE, YELLOW, NOCOLOUR
 	
 }
