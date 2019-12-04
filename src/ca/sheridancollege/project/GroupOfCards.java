@@ -33,14 +33,7 @@ public abstract class GroupOfCards
 	// the max that should grou hc
 	cards = new ArrayList(givenSize);
     }
-    /**
-     * A method that will get the group of cards as an ArrayList
-     * @return the group of cards.
-     */
-    public ArrayList<Card> showCards()
-    {
-        return cards;
-    }
+   
     
     public void shuffle()
     {
