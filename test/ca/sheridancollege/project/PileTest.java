@@ -36,32 +36,4 @@ public class PileTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getTopCard method, of class Pile.
-     */
-    @Test
-    public void testGetTopCard() {
-        System.out.println("getTopCard");
-        Pile instance = new Pile();
-        Card expResult = null;
-        Card result = instance.getTopCard();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTopCard method, of class Pile.
-     */
-    @Test
-    public void testSetTopCard() {
-        System.out.println("setTopCard");
-        Card topCard = null;
-        Pile instance = new Pile();
-        instance.setTopCard(topCard);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
