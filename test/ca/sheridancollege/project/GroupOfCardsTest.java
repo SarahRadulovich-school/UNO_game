@@ -36,21 +36,7 @@ public class GroupOfCardsTest {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of showCards method, of class GroupOfCards.
-     */
-    @Test
-    public void testShowCards() {
-        System.out.println("showCards");
-        GroupOfCards instance = null;
-        ArrayList<Card> expResult = null;
-        ArrayList<Card> result = instance.showCards();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    }    
 
     /**
      * Test of shuffle method, of class GroupOfCards.
