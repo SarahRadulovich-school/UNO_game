@@ -165,7 +165,7 @@ public class UnoGame {
 
                         //if it's the wild card
                         if (cardSelection.getValue() == CardType.WILDCARD) {
-                            cardSelection.setColour(wildCard(cardSelection));
+                            cardSelection.setColour(wildCard());
                             pile.setTopCard(cardSelection);
                         }
 
@@ -254,7 +254,7 @@ public class UnoGame {
         }
     }
 
-    public Colour wildCard(Card cardSelection) {
+    public Colour wildCard() {
         Scanner scan = new Scanner(System.in);
         System.out.println("What colour would you like to choose?");
         System.out.println("1. Red");
@@ -274,7 +274,8 @@ public class UnoGame {
             case 4:
                 return Colour.YELLOW;
             default:
-                return Colour.NOCOLOUR;
+                //if the user does not choose an option on the list, it will default to RED
+                return Colour.RED;
         }
     }
 

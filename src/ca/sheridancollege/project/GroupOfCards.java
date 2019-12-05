@@ -35,15 +35,7 @@ public abstract class GroupOfCards
     }
    
     
-    public boolean shuffle()
-    {
-        if(cards.isEmpty()) {
-            //cards is empty and cannot be shuffled
-            return false;
-        }
-        Collections.shuffle(cards);
-        return true;
-    }
+    public abstract boolean shuffle();
 
     /**
      * @return the size of the group of cards

@@ -40,6 +40,7 @@ public class UnoGameTest {
     }
     
     //this is so we can simulate input from the user!
+    //Rule from: https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input
     @Rule
     public final TextFromStandardInputStream systemInMock
         = emptyStandardInputStream();
@@ -47,20 +48,29 @@ public class UnoGameTest {
     @Test
     public void testwildCardGood() {
         System.out.println("wildCardGood");
-        assertEquals(true, pile.validPlay(wildcard));
+        UnoGame uno = new UnoGame();
+        Colour selectedColour = uno.wildCard();
+        //selects a valid colour
+        systemInMock.provideLines("2");
+        //Option 2 = GREEN
+        assertEquals(Colour.GREEN, selectedColour);
     }
         
     @Test
     public void testwildCardBad() {
         System.out.println("wildCardBad");
-        assertEquals(true, pile.validPlay(wildcard));
+        //User tries to select a colour that's not on the list.
+        //Therefore, it should default to RED.
+        UnoGame uno = new UnoGame();
+        Colour selectedColour = uno.wildCard();
+        //selects an invalid colour
+        systemInMock.provideLines("7");
+        
+        assertEquals(Colour.RED, selectedColour);
     }
        
-    @Test
-    public void testwildCardBoundary() {
-        System.out.println("wildCardBoundary");
-        assertEquals(true, pile.validPlay(wildcard));
-    }
+    //There is no boundary test for wildCard() because the results are binary
+    //Either the user picks a valid colour, or they don't. 
     
     @Test
     public void testUnoOrContinueGood() {

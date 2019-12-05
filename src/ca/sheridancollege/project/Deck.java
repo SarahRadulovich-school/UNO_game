@@ -45,6 +45,7 @@ public class Deck extends GroupOfCards {
         super.setCards(deck);
     }
     
+    @Override
     public boolean shuffle() {
         ArrayList<Card> deckCards = super.getCards();
         

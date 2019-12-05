@@ -18,6 +18,12 @@ public class Pile extends GroupOfCards {
             super(0);
 	}
         
+        @Override
+        public boolean shuffle() {
+            //we should never be shuffling the pile
+            return false;
+        }
+        
         public boolean validPlay(Card card) {
             //is the card being played valid?
             boolean valid = false;
