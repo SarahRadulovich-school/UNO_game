@@ -129,12 +129,9 @@ public class UnoGame {
                        }
                        //see if the user entered the correct card
                        Card chosen = hand.get(selection -1);
-                       if(chosen.getColour() == topCard.getColour()){
+                       
+                       if(pile.validPlay(chosen)) {
                            break;
-                        }
-                      //if the cards are of same value
-                       if (chosen.getValue()==topCard.getValue()){
-                            break;
                        }	
                     System.out.println("That is not valid card.\nplease try again.");
                    }catch(java.lang.IndexOutOfBoundsException e){
