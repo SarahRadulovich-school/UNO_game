@@ -85,10 +85,14 @@ public class Deck extends GroupOfCards {
     
     public ArrayList<Card> startingCards() {
         ArrayList<Card> startingHand = new ArrayList();
-        
         //a starting hand has 7 cards
         for(int i = 0; i < 7; i++) {
-            startingHand.add(nextCard());
+            Card card = nextCard();
+            if(card.getValue() == null) {
+                //the deck has run out, return what we have and don't add the blank card
+                break;
+            }
+            startingHand.add(card);
         }
         
         return startingHand;

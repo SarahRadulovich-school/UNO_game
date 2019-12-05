@@ -5,6 +5,7 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -65,6 +66,7 @@ public class DeckTest {
         //if either of the cards are different, that means the deck was shuffled and the test will pass
         assertEquals(true, shuffled);
     }
+    
     @Test
     public void testShuffleBad() {
         System.out.println("shuffleBad");
@@ -79,6 +81,7 @@ public class DeckTest {
         // the shuffle() method should return false
         assertEquals(false, deck.shuffle());
     }
+    
     @Test
     public void testShuffleBoundary() {
         System.out.println("shuffleBoundary");
@@ -109,6 +112,7 @@ public class DeckTest {
         ////since the deck is unshuffled, that last card should be WILDCARD
         assertEquals(CardType.WILDCARD, card.getValue());
     }
+    
     @Test
     public void testNextCardBad() {
         System.out.println("nextCardBad");
@@ -123,6 +127,7 @@ public class DeckTest {
         Card card = deck.nextCard();
         assertEquals(null, card.getValue());
     }
+    
     @Test
     public void testNextCardBoundary() {
         System.out.println("nextCardBoundary");
@@ -137,6 +142,44 @@ public class DeckTest {
         Card card = deck.nextCard();
         //since the deck is unshuffled, that last card should be ZERO
         assertEquals(CardType.ZERO, card.getValue());
+    }
+    
+    @Test
+    public void testStartingCardsGood() {
+        System.out.println("testStartingCardsGood");
+        //In a new deck a player can get 7 cards
+        Deck deck = new Deck();
+        ArrayList<Card> hand = deck.startingCards();
+        
+        assertEquals(7, hand.size());
+    }
+    
+    @Test
+    public void testStartingCardsBad() {
+        System.out.println("testStartingCardsBad");
+        //In an empty deck, the player should not be able to get their starting hand
+        Deck deck = new Deck();
+        //deck is empty
+        for(int i = 0; i < 59; i++) {
+            deck.nextCard();
+        }
+        
+        ArrayList<Card> hand = deck.startingCards();
+        
+        assertEquals(0, hand.size());
+    }
+    
+    @Test
+    public void testStartingCardsBoundary() {
+        System.out.println("testStartingCardsBoundary");
+        //In a deck with exactly 7 cards left, a player should be able to get their starting hand
+        Deck deck = new Deck();
+        for(int i = 0; i < 52; i++) {
+            deck.nextCard();
+        }
+        ArrayList<Card> hand = deck.startingCards();
+        
+        assertEquals(7, hand.size());
     }
     
 }
