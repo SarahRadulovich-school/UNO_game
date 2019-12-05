@@ -73,7 +73,7 @@ public class DeckTest {
         Deck deck = new Deck();
         
         //take out ALL cards from the deck. Deck is now empty
-        for (int i =0 ; i<59;i++)
+        for (int i =0 ; i<60;i++)
         {
             deck.nextCard();
         }
@@ -119,7 +119,7 @@ public class DeckTest {
         Deck deck = new Deck();
         
         //take all 60 cards out of the deck. The deck is now empty
-        for (int i = 0 ; i < 59 ; i++)
+        for (int i = 0 ; i < 60 ; i++)
         { 
             deck.nextCard();
         }
@@ -160,7 +160,7 @@ public class DeckTest {
         //In an empty deck, the player should not be able to get their starting hand
         Deck deck = new Deck();
         //deck is empty
-        for(int i = 0; i < 59; i++) {
+        for(int i = 0; i < 60; i++) {
             deck.nextCard();
         }
         
