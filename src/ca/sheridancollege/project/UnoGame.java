@@ -143,15 +143,16 @@ public class UnoGame {
 
                 //Player chose to pick up a card. 
                 if (selection == 0) {
+                    System.out.println("You picked up a card!");
                     hand.add(deck.nextCard());
                 } //Play a card
                 else {
                     //Player wants to play a card, we must check if it's valid
-                    if (pile.validPlay(hand.get(selection - 1)) == true) {
+                    Card cardSelection = hand.get(selection - 1);
+                    if (pile.validPlay(cardSelection) == true) {
                         //card is valid, and can be played
-                        pile.setTopCard(hand.get(selection - 1));
+                        pile.setTopCard(cardSelection);
 
-                        Card cardSelection = hand.get(selection - 1);
 
                         if (cardSelection.getValue() == CardType.PICKUP2) {
                             pickup2 = true;
@@ -285,7 +286,6 @@ public class UnoGame {
         boolean hasUNO = false;
         boolean penalty = false;
 
-        System.out.println("****HAND SIZE = " + player.getHandSize());
         if (player.getHandSize() == 1) {
             hasUNO = true;
         }
